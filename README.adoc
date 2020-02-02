@@ -1,0 +1,1 @@
+Simple example of Vert.x deployment on Qovery running on secure non-root distroless Docker container
