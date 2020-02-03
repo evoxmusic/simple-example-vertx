@@ -21,6 +21,7 @@ WORKDIR /app/example/
 # takes executable jar from build stage
 COPY --from=builder /app/example/build/libs/example-1.0.0-SNAPSHOT-fat.jar example.jar
 
+# uses non-root user
 USER nobody:nobody
 
 # starts and exposes application
