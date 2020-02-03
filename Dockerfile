@@ -16,13 +16,11 @@ RUN ./gradlew shadowJar
 
 # uses minimal distroless container for runtime
 FROM gcr.io/distroless/java:11
-ENV APP_HOME=/app/example/
 WORKDIR /app/example/
 
 # takes executable jar from build stage
 COPY --from=builder /app/example/build/libs/example-1.0.0-SNAPSHOT-fat.jar example.jar
 
-# runs as non root user using distroless magic
 USER nobody:nobody
 
 # starts and exposes application
