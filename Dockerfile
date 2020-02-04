@@ -20,7 +20,8 @@ FROM adoptopenjdk/openjdk11:x86_64-debianslim-jdk-11.0.6_10-slim
 WORKDIR /app/example/
 
 ARG DD_API_KEY
-RUN DD_AGENT_MAJOR_VERSION=7 DD_SITE="datadoghq.eu" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+RUN DD_INSTALL_ONLY=true DD_AGENT_MAJOR_VERSION=7 DD_SITE="datadoghq.eu" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+RUN datadog-agent start
 
 # takes executable jar from build stage
 COPY --from=builder /app/example/build/libs/example-1.0.0-SNAPSHOT-fat.jar example.jar
