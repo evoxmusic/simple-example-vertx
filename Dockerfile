@@ -19,6 +19,7 @@ RUN ./gradlew shadowJar
 FROM adoptopenjdk/openjdk11:x86_64-debianslim-jdk-11.0.6_10-slim
 WORKDIR /app/example/
 
+ARG DD_API_KEY
 RUN DD_AGENT_MAJOR_VERSION=7 DD_SITE="datadoghq.eu" bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 
 # takes executable jar from build stage
